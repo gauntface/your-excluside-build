@@ -40,6 +40,75 @@ img {
 
 .inner-content {
   max-width: 840px;
-  padding: 32px 32px;
+  padding: 0 16px;
   margin: 0 auto;
+}
+
+main > section {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+#projects h2 {
+  margin-bottom: 0;
+}
+
+.contact__flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.contact__form-container {
+  max-width: 360px;
+}
+
+.contact__form-container p {
+  margin-top: 0;
+}
+
+.contact__img {
+  flex: 1;
+  margin-left: 32px;
+  background-image: url('/images/contact-image.jpg');
+  background-position-x: center;
+  background-position-y: bottom;
+  background-size: cover;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form textarea {
+  height: 120px;
+}
+
+input, textarea {
+  margin: 8px 0;
+  padding: 16px;
+  font-family: inherit;
+}
+
+input[type='submit'] {
+  background-color: var(--brand-grey);
+  color: var(--second-brand-grey);
+  border: none;
+  transition: background-color 200ms ease-in-out;
+  margin-bottom: 0;
+}
+
+input[type='submit']:hover {
+  background-color: var(--dark-grey);
+}
+
+@media (max-width: 260px) {
+  body {
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
 }

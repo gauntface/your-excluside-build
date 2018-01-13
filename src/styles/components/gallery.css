@@ -1,3 +1,6 @@
+@import '../variables/colors.css';
+@import '../variables/dimens.css';
+
 .album ul {
   display: flex;
   flex-wrap: wrap;
@@ -10,10 +13,23 @@
 }
 
 .album ul li img {
-  width: 200px;
-  height: 200px;
+  width: var(--gallery-img-size);
+  height: var(--gallery-img-size);
 
   object-fit: cover;
 
-  margin: 8px;
+  margin: 4px;
+  border-width: 4px;
+  border-style: solid;
+  border-color:var(--second-brand-grey);
+}
+
+.album ul li img:hover {
+  border-color:var(--brand-green);
+}
+
+@media (max-width: 384px) {
+  .album ul {
+    justify-content: center;
+  }
 }
