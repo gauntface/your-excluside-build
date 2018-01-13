@@ -2,12 +2,17 @@
 @import './components/nav.css';
 @import './components/footer.css';
 @import './components/gallery.css';
+@import './variables/colors.css';
 
 html, body {
   padding: 0;
   margin: 0;
 
   font-family: sans-serif;
+}
+
+body {
+  background-color: var(--page-bg);
 }
 
 a {

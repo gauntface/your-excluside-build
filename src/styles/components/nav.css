@@ -1,5 +1,10 @@
 @import '../variables/colors.css';
 
+nav {
+  width: 100%;
+  background-color: var(--page-bg);
+}
+
 nav ul {
   list-style-type: none;
   margin: 0;
@@ -13,6 +18,7 @@ nav ul li {
 nav ul li a {
   display: inline-block;
   padding: 24px 8px;
+  line-height: 16px;
   text-decoration: none;
   color: var(--dark-grey);
 }

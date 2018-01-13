@@ -6,4 +6,6 @@
 
   --header-bg: var(--brand-grey);
   --footer-bg: var(--dark-grey);
+
+  --page-bg: white;
 }
