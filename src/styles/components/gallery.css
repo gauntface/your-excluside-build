@@ -1,0 +1,19 @@
+.album ul {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.album ul li img {
+  width: 200px;
+  height: 200px;
+
+  object-fit: cover;
+
+  margin: 8px;
+}

@@ -1,8 +1,12 @@
 const gulp = require('gulp');
+const mustache = require('gulp-mustache');
 const htmlmin = require('gulp-htmlmin');
 
-const html = () => {
-  return gulp.src(`${global.__buildConfig.src}/**/*.html`)
+const handlebars = () => {
+  return gulp.src(`${global.__buildConfig.src}/**/*.hbs`)
+  .pipe(mustache({}, {
+    extension: '.html',
+  }))
   .pipe(htmlmin({
     html5: true,
     collapseWhitespace: true,
@@ -14,4 +18,4 @@ const html = () => {
   .pipe(gulp.dest(global.__buildConfig.dest));
 };
 
-gulp.task(html);
+gulp.task(handlebars);

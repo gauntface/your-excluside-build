@@ -3,6 +3,7 @@ const gulp = require('gulp');
 const path = require('path');
 const request = require('request');
 const fs = require('fs-extra');
+const mustache = require('mustache');
 const { URL } = require('url');
 
 const secrets = require('../secrets.json');
@@ -45,43 +46,78 @@ const getAlbumPhotos = async (albumId) => {
     })[0];
 
     largestImage.id = photoDetails.id;
+    largestImage.created_time = photoDetails.created_time;
 
     photos.push(largestImage);
   });
 
-  return photos;
+  return photos.sort((a, b) => {
+    return Date.parse(a.created_time) < Date.parse(b.created_time);
+  });
 }
 
-const downloadPhoto = async (photoURL, photoPath) => {
+const downloadPhoto = async (albumPath, photoInfo) => {
+  const photoPath = path.join(albumPath, photoInfo.filename);
+  const photoExists = await fs.exists(photoPath);
+  if (photoExists) {
+    return photoPath;
+  }
+
+  await fs.ensureDir(albumPath);
+
   return new Promise((resolve, reject) => {
-    request(photoURL)
+    request(photoInfo.url)
     .pipe(fs.createWriteStream(photoPath)).on('close', (err) => {
       if (err) {
         reject(err);
         return;
       }
-      resolve();
+      resolve(photoPath);
     });
   });
 }
 
-const downloadPhotos = async (albumPath, photos) => {
-  await fs.ensureDir(albumPath);
+const downloadAlbum = async (albumInfo, galleryPath) => {
+  const albumPath = path.join(galleryPath, albumInfo.id);
 
+  const albumDetails = {
+    id: albumInfo.id,
+    name: albumInfo.name,
+    photos: [],
+    cover: null,
+  };
+  const photos = await getAlbumPhotos(albumInfo.id);
   for (const photoInfo of photos) {
-    const photoPath = path.join(albumPath, photoInfo.filename);
-    await downloadPhoto(photoInfo.url, photoPath);
-  }
+    const filename = path.basename(new URL(photoInfo.source).pathname);
+    const localPhotoInfo = {
+      url: photoInfo.source,
+      filename,
+      id: photoInfo.id,
+      width: photoInfo.width,
+      height: photoInfo.height,
+      created_time: photoInfo.created_time,
+    };
 
-  return photos;
+    const absPhotoPath = await downloadPhoto(albumPath, localPhotoInfo);
+    localPhotoInfo.path = '/' + path.relative(
+      path.join(__dirname, '..', 'src'),
+      absPhotoPath,
+    );
+    albumDetails.photos.push(localPhotoInfo);
+
+    if (albumInfo.cover_photo.id === photoInfo.id) {
+      albumDetails.cover = localPhotoInfo;
+    }
+  };
+
+  return albumDetails;
 };
 
-gulp.task('gallery', async () => {
+const generateGalleryFiles = async (galleryPath) => {
   const accessToken = await getFBAccessToken();
   FB.setAccessToken(accessToken);
 
-  const allAlbums = await getAlbums();
-  const filteredAlbums = allAlbums.filter((albumInfo) => {
+  const allAlbums = (await getAlbums()).filter((albumInfo) => {
     switch (albumInfo.name.toLowerCase()) {
       case 'profile pictures':
       case 'mobile uploads':
@@ -93,52 +129,43 @@ gulp.task('gallery', async () => {
         return true;
     }
   });
-  const galleries = [];
-  for (const albumInfo of filteredAlbums) {
-    console.log(`Getting album info for '${albumInfo.name}'`);
-    if (albumInfo.cover_photo) {
-      const photos = await getAlbumPhotos(albumInfo.id);
-      let coverPhoto = null;
-      const localPhotos = photos.map((photoInfo) => {
-        const filename = path.basename(new URL(photoInfo.source).pathname);
-        const localPhotoInfo = {
-          url: photoInfo.source,
-          filename,
-          id: photoInfo.id,
-        };
 
-        if (albumInfo.cover_photo.id === photoInfo.id) {
-          coverPhoto = localPhotoInfo;
-        }
 
-        return localPhotoInfo;
-      });
-
-      const galleryPath = path.join(__dirname, '..', 'src', 'gallery');
-      const albumPath = path.join(galleryPath, albumInfo.id);
-
-      await downloadPhotos(albumPath, localPhotos);
-
-      coverPhoto.path = path.relative(
-        albumPath,
-        path.join(albumPath, coverPhoto.filename),
-      );
-      delete coverPhoto.url;
-      await fs.writeFile(path.join(albumPath, 'album.json'), JSON.stringify({
-        album: {
-          id: albumInfo.id,
-          name: albumInfo.name,
-        },
-        coverPhoto,
-        photos: localPhotos.map((photoInfo) => {
-          photoInfo.path = path.relative(
-            albumPath,
-            path.join(albumPath, coverPhoto.filename),
-          );
-          delete photoInfo.url;
-          return photoInfo;
-        }),
-      }, null, 2));
+  const galleryDetails = {
+    albums: []
+  };
+  for (const album of allAlbums) {
+    const albumDetails = await downloadAlbum(album, galleryPath);
+    if (albumDetails.photos.length > 0) {
+      console.log(`Album ${album.name} has ` +
+        `${albumDetails.photos.length} photos.`);
+      galleryDetails.albums.push(albumDetails);
     }
   }
-});
+
+  const jsonPath = path.join(galleryPath, 'gallery.json');
+  await fs.writeFile(
+    jsonPath,
+    JSON.stringify(galleryDetails, null, 2)
+  );
+
+  return galleryDetails;
+};
+
+const gallery = async () => {
+  const galleryPath = path.join(__dirname, '..', 'src', 'gallery');
+
+  const galleryDetails = await generateGalleryFiles(galleryPath);
+
+  const template = (await fs.readFile(
+    path.join(__dirname, 'templates', 'gallery.hbs')
+  )).toString();
+  const renderedGallery = mustache.render(template, galleryDetails);
+
+  await fs.writeFile(
+    path.join(galleryPath, 'gallery.html'),
+    renderedGallery,
+  );
+};
+
+gulp.task(gallery);

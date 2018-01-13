@@ -1,0 +1,8 @@
+:root {
+  --brand-grey: #e4e4e4;
+  --second-brand-grey: #6e6e6e;
+  --dark-grey: #202020;
+
+  --header-bg: var(--brand-grey);
+  --footer-bg: var(--dark-grey);
+}
