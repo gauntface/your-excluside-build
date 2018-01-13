@@ -58,21 +58,14 @@ main > section {
   flex-direction: row;
 }
 
-.contact__form-container {
-  max-width: 360px;
-}
+
 
 .contact__form-container p {
   margin-top: 0;
 }
 
 .contact__img {
-  flex: 1;
-  margin-left: 32px;
-  background-image: url('/images/contact-image.jpg');
-  background-position-x: center;
-  background-position-y: bottom;
-  background-size: cover;
+  display: none;
 }
 
 .contact-form {
@@ -110,5 +103,21 @@ input[type='submit']:hover {
   h2 {
     font-size: 1.4rem;
     text-transform: uppercase;
+  }
+}
+
+@media (min-width: 620px) {
+  .contact__form-container {
+    max-width: 360px;
+  }
+
+  .contact__img {
+    display: block;
+    flex: 1;
+    margin-left: 32px;
+    background-image: url('/images/contact-image.jpg');
+    background-position-x: center;
+    background-position-y: bottom;
+    background-size: cover;
   }
 }
