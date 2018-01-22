@@ -11,8 +11,9 @@
     <title>Your Exclusive Build Ltd</title>
 
     <link rel="stylesheet" media="all" href="/styles/main.css">
-    <!-- TODO: Make this async -->
+    <!-- TODO: Make these async -->
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="/third_party/lightbox/css/lightbox.min.css" rel="stylesheet">
   </head>
   <body id="home">
     {{> ./partials/nav.hbs}}
@@ -50,7 +51,6 @@
 
       <section id="services">
         <div class="inner-content u-flex-row">
-          {{> ./partials/services-images.hbs}}
           <div class="services__info">
             <h2>Our Services</h2>
 
@@ -72,6 +72,7 @@
               <li>Bathrooms</li>
             </ul>
           </div>
+          {{> ./partials/services-images.hbs}}
         </div>
       </section>
 
@@ -121,5 +122,6 @@
     {{> ./partials/footer.hbs}}
 
     <script src="/scripts/services.js"></script>
+    <script src="/third_party/lightbox/js/lightbox-plus-jquery.min.js"></script>
   </body>
 </html>

@@ -160,7 +160,25 @@ const gallery = async () => {
   const template = (await fs.readFile(
     path.join(__dirname, 'templates', 'gallery.hbs')
   )).toString();
-  const renderedGallery = mustache.render(template, galleryDetails);
+
+  const filteredAlbum = galleryDetails.albums.map((albumDetails) => {
+    const clone = Object.assign({}, albumDetails);
+    const filterAmount = albumDetails.photos.length > 8 ? 7 : 8;
+    clone.photos = albumDetails.photos.filter((photo, index) => {
+      return index < filterAmount;
+    });
+    if (albumDetails.photos.length > 8) {
+      clone.additionalPhotos = albumDetails.photos.filter((photo, index) => {
+        return index >= filterAmount;
+      });
+      clone.extraPhotos = clone.additionalPhotos.length;
+    }
+    return clone;
+  });
+
+  const renderedGallery = mustache.render(template, {
+    albums: filteredAlbum,
+  });
 
   await fs.writeFile(
     path.join(galleryPath, 'gallery.html'),

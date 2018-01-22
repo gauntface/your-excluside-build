@@ -37,6 +37,7 @@ const scripts = (done) => {
   return glob('**/*.js', {
     cwd: global.__buildConfig.src,
     absolute: true,
+    ignore: ['**/*.min.js'],
   })
   .then((scriptFiles) => {
     if (scriptFiles.length === 0) {

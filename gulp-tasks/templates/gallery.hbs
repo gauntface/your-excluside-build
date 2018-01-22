@@ -4,8 +4,14 @@
     <h3>{{name}}</h3>
     <ul>
       {{#photos}}
-      <li><a href="{{{path}}}"><img src="{{{path}}}" width="{{width}}px" height="{{height}}px" alt="Photo from '{{name}}' gallery by Your Exclusive Build Ltd." /></a></li>
+      <li><a href="{{{path}}}" data-lightbox="{{name}}"><img src="{{{path}}}" width="{{width}}px" height="{{height}}px" alt="Photo from '{{name}}' gallery by Your Exclusive Build Ltd." /></a></li>
       {{/photos}}
+
+      {{#extraPhotos}}
+      {{#additionalPhotos}}
+      <li class="gallery__view-more"><a href="{{{path}}}" data-lightbox="{{name}}">View More Photos</a></li>
+      {{/additionalPhotos}}
+      {{/extraPhotos}}
     </ul>
   </div>
 {{/albums}}
