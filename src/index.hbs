@@ -15,19 +15,9 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   </head>
   <body id="home">
-    <nav>
-      <ul class="inner-content">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    {{> ./partials/nav.hbs}}
 
-    <header>
-      <h1>Your Exclusive Build</h1>
-    </header>
+    {{> ./partials/header.hbs}}
 
     <main>
       <section id="about">
@@ -59,26 +49,29 @@
       </section>
 
       <section id="services">
-        <div class="inner-content">
-          <h2>Our Services</h2>
+        <div class="inner-content u-flex-row">
+          {{> ./partials/services-images.hbs}}
+          <div class="services__info">
+            <h2>Our Services</h2>
 
-          <p>
-            Here is a few examples of the works carried out by us. If there
-            is anything that we have not listed please don't hesitate to
-            contact us, and if we aren't able to do it we can most certainly
-            point you in the right direction.
-          </p>
+            <p>
+              Here is a few examples of the works carried out by us. If there
+              is anything that we have not listed please don't hesitate to
+              contact us, and if we aren't able to do it we can most certainly
+              point you in the right direction.
+            </p>
 
-          <ul>
-            <li>Extensions</li>
-            <li>House renovations</li>
-            <li>Loft conversions</li>
-            <li>Patios</li>
-            <li>Driveways</li>
-            <li>Fencing</li>
-            <li>Landscaping</li>
-            <li>Bathrooms</li>
-          </ul>
+            <ul>
+              <li>Extensions</li>
+              <li>House renovations</li>
+              <li>Loft conversions</li>
+              <li>Patios</li>
+              <li>Driveways</li>
+              <li>Fencing</li>
+              <li>Landscaping</li>
+              <li>Bathrooms</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -93,16 +86,25 @@
       <section id="contact">
         <div class="inner-content">
           <h2>Contact</h2>
-          <div class="contact__flex">
+          <div class="u-flex-row">
             <div class="contact__form-container">
               <p>
                 Please get in touch if you have any questions or would like a
                 free quotation. We are more than willing to help where we can.
               </p>
 
+              <p>
+                <strong>Phone:</strong> <a href="tel:07825588356">07825588356</a><br />
+                <strong>Email:</strong> <a href="mailto:yourexclusivebuildltd@gmail.com">yourexclusivebuildltd@gmail.com</a>
+              </p>
+
               <form class="contact-form"
                 action="https://formspree.io/yourexclusivebuildltd@gmail.com"
                 method="POST">
+                <input type="hidden" name="_next" value="/thanks.html" />
+                <input type="hidden" name="_subject" value="Contact Form: yourexclusivebuild.co.uk" />
+                <input type="text" name="_gotcha" style="display:none" />
+
                 <input type="text" name="name" placeholder="Your Name">
                 <input type="email" name="email" placeholder="Your email">
                 <textarea name="message" placeholder="Message"></textarea>
@@ -116,26 +118,8 @@
       </section>
     </main>
 
-    <footer>
-      <div class="footer__content inner-content">
-        <section class="footer__contact">
-          <strong>Find us on:</strong><br />
-          <a href="https://www.facebook.com/yourexclusivebuild/">Facebook</a><br />
-          <br />
-          <strong>Contact us at:</strong><br />
-          <a href="mailto:yourexclusivebuildltd@gmail.com">yourexclusivebuildltd@gmail.com</a><br />
-          <a href="tel:07825588356">07825588356</a>
-        </section>
+    {{> ./partials/footer.hbs}}
 
-        <section class="footer__address">
-          <strong>Your Exclusive Build Ltd</strong><br />
-          8 Sycamore Drive<br />
-          East Grinstead<br />
-          West Sussex<br />
-          RH19 3UJ<br />
-          United Kingdom
-        </section>
-      </div>
-    </footer>
+    <script src="/scripts/services.js"></script>
   </body>
 </html>
