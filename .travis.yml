@@ -6,6 +6,7 @@ addons:
     packages:
     - libjpeg-dev
     - libpng-dev
+    - libpng16-16
 
 install:
   - npm install
