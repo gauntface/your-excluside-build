@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const imagemin = require('gulp-imagemin');
-const mozjpeg = require('imagemin-mozjpeg');
 const pngquant = require('imagemin-pngquant');
 
 const images = () => {
@@ -15,9 +14,7 @@ const images = () => {
   .pipe(imagemin([
     imagemin.gifsicle(),
     imagemin.svgo(),
-    mozjpeg({
-      quality: 80
-    }),
+    imagemin.jpegtran(),
     pngquant({
       quality: 80
     }),
