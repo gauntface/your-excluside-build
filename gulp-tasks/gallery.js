@@ -6,9 +6,18 @@ const fs = require('fs-extra');
 const mustache = require('mustache');
 const { URL } = require('url');
 
-const secrets = require('../secrets.json');
-
 const FB_PAGE_ID = '1498763956801410';
+
+const secrets = (() => {
+  if (process.env.FB_CLIENT_ID && process.env.FB_CLIENT_SECRET) {
+    return {
+      FB_CLIENT_ID: process.env.FB_CLIENT_ID,
+      FB_CLIENT_SECRET: process.env.FB_CLIENT_SECRET,
+    };
+  } else {
+    return require('../secrets.json');
+  }
+})();
 
 const fbAPI = (...args) => {
   return new Promise((resolve, reject) => {
