@@ -1,6 +1,11 @@
 language: node_js
 node_js:
   - "stable"
+addons:
+  apt:
+    packages:
+    - libjpeg-dev
+    - libpng-dev
 
 install:
   - npm install
