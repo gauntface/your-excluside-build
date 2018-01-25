@@ -13,3 +13,5 @@ deploy:
   provider: firebase
   token:
     secure: $FIREBASE_CI_TOKEN
+  on:
+    branch: master
