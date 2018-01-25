@@ -4,7 +4,7 @@ const fse = require('fs-extra');
 const build = (done) => {
   return gulp.series([
     () => fse.remove(global.__buildConfig.dest),
-    // 'gallery',
+    'gallery',
     'services',
     gulp.parallel([
       'copy',
