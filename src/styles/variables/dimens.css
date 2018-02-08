@@ -1,4 +1,8 @@
 :root {
   --padding: 16px;
-  --gallery-img-size: 160px
+  --gallery-img-size: 160px;
+  --nav-mobile-height: 50px;
+  --nav-menu-height: 20px;
+  --nav-drawer-horizontal-padding: 24px;
+  --nav-drawer-vertical-padding: 22px;
 }

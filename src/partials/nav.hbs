@@ -1,12 +1,19 @@
 <nav>
-  <ul class="inner-content">
-    <li><a href="/#home">Home</a></li>
-    <li><a href="/#about">About</a></li>
-    <li><a href="/#services">Services</a></li>
-    <li><a href="/#projects">Projects</a></li>
-    <li><a href="/#contact">Contact</a></li>
-    <li class="spacer"></li>
-    <li class="nav-icon"><a href="/#contact"><img src="/images/call.svg" /></a></li>
-    <li class="nav-icon"><a href="/#contact"><img src="/images/email.svg" /></a></li>
-  </ul>
+  <div class="nav-menu-icon">
+    {{> ../images/menu.svg }}
+  </div>
+
+  <div class="nav-logo">
+    <a href="/#home">
+    {{> ../images/your-exclusive-build-logo.min.svg }}
+    </a>
+  </div>
 </nav>
+
+<ul class="nav-content">
+  <li><span class="nav-content__title">Menu</span></li>
+  <li><a href="/#about">About</a></li>
+  <li><a href="/#services">Services</a></li>
+  <li><a href="/#projects">Projects</a></li>
+  <li><a href="/#contact">Contact</a></li>
+</ul>
