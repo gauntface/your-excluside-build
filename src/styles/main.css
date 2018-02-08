@@ -1,4 +1,4 @@
-@import './components/header.css';
+@import './components/carousel.css';
 @import './components/nav.css';
 @import './components/footer.css';
 @import './components/gallery.css';
@@ -31,12 +31,21 @@ a {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Raleway', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 h2 {
   font-size: 2.4rem;
   text-transform: uppercase;
+}
+
+h2:after {
+  content: '';
+  display: block;
+  width: 55%;
+  height: 3px;
+  background-color: var(--brand-green);
+  margin-top: 1rem;
 }
 
 img {
