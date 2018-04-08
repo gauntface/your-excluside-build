@@ -1,0 +1,32 @@
+@import '../variables/colors.css';
+@import '../variables/dimens.css';
+
+.services-list {
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: var(--padding);
+  list-style: none;
+  text-align: center;
+}
+
+.service-icon:hover {
+  cursor: pointer;
+}
+
+.service-icon:before {
+  content: '';
+  width: 100px;
+  height: 100px;
+  display: block;
+  background-color: var(--button-bg);
+  border-radius: 100%;
+  margin: 0 auto;
+  margin-bottom: calc(var(--padding) / 2);
+}
+
+.service-icon:before:hover {
+  background-color: var(--button-bg-hover);
+}

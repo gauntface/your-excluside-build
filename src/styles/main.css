@@ -2,6 +2,7 @@
 @import './components/nav.css';
 @import './components/footer.css';
 @import './components/gallery.css';
+@import './components/services-list.css';
 @import './variables/colors.css';
 @import './variables/dimens.css';
 
@@ -18,15 +19,6 @@ body {
 
 a {
   color: inherit;
-}
-
-#services {
-  background-color: var(--brand-grey);
-}
-
-#contact {
-  background-color: var(--second-brand-grey);
-  color: var(--brand-grey);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -73,7 +65,13 @@ main > section {
   flex-direction: column;
 }
 
+#contact {
+  background-color: var(--light-grey);
+}
 
+#contact a {
+  text-decoration: none;
+}
 
 .contact__form-container p {
   margin-top: 0;
@@ -101,17 +99,18 @@ input, textarea {
 input[type='submit'], button, .button {
   display:inline-block;
 
-  background-color: var(--brand-grey);
-  color: var(--second-brand-grey);
+  background-color: var(--button-bg);
+  color: var(--button-text-color);
   text-decoration: none;
   border: none;
   transition: background-color 200ms ease-in-out;
   margin-bottom: 0;
   padding: 16px;
+  text-transform: uppercase;
 }
 
 input[type='submit']:hover, button:hover, .button:hover {
-  background-color: var(--dark-grey);
+  background-color: var(--button-bg-hover);
 }
 
 .services__img {

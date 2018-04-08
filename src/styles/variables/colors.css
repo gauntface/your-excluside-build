@@ -1,12 +1,16 @@
 :root {
-  --light-grey: #e5e5e5;
+  --light-grey: #efefef;
   --secondary-grey: #bcbcbc;
   --second-brand-grey: #6e6e6e;
   --brand-green: #63da4c;
-  --dark-grey: #202020;
-
-  --header-bg: var(--brand-grey);
-  --footer-bg: var(--dark-grey);
+  --dark-grey: #424242;
 
   --page-bg: white;
+
+  --footer-bg: var(--dark-grey);
+  --footer-text-color: white;
+
+  --button-text-color: black;
+  --button-bg: var(--brand-green);
+  --button-bg-hover: #36c824;
 }
