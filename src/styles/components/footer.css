@@ -2,17 +2,36 @@
 @import '../variables/dimens.css';
 
 footer {
-  padding-top: 32px;
-  padding-bottom: 32px;
+  padding: calc(var(--padding) /2) 0;
   background-color: var(--footer-bg);
   color: var(--footer-text-color);
   text-align: center;
 }
 
-.footer__facebook .fb-icon, .footer__facebook a {
+.footer__facebook a {
+  display: block;
+  width: 100%;
+  padding: var(--padding);
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.footer__facebook .fb-icon {
   display: inline-block;
+  vertical-align: middle;
   width: calc(var(--padding) * 1.5);
   height: calc(var(--padding) * 1.5);
+}
+
+.footer__facebook::after {
+  content: '';
+  display: block;
+
+  height: 2px;
+
+  background: gray;
+
+  margin: calc(var(--padding) /2) 0;
 }
 
 @media (min-width: 740px) {

@@ -33,9 +33,9 @@ require('./gulp-tasks/scripts.js');
 gulp.task(require('./gulp-tasks/build.js'));
 require('./gulp-tasks/serviceWorker.js');
 require('./gulp-tasks/gallery.js');
+require('./gulp-tasks/carousel.js');
 require('./gulp-tasks/serve.js');
 require('./gulp-tasks/handlebars.js');
 gulp.task(require('./gulp-tasks/watch.js'));
-require('./gulp-tasks/services.js')
 
 gulp.task('default', gulp.series(['build']));
