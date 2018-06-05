@@ -72,50 +72,45 @@ nav {
   font-size: 1.4rem;
 }
 
-/*
-nav ul {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
+@media (min-width: 1000px) {
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 
-nav ul li {
-  display: inline;
-}
-
-nav ul li a {
-  display: inline-block;
-  padding: 24px 8px;
-  line-height: 16px;
-  text-decoration: none;
-  color: var(--dark-grey);
-}
-
-.nav-icon, nav ul li.spacer {
-  display: none;
-}
-
-@media (min-width: 560px) {
-  nav ul {
-    justify-content: flex-start;
-  }
-  nav ul li.spacer {
-    display: inline-block;
-    flex: 1;
+    height: auto;
   }
 
-  .nav-icon {
-    display: inline;
+  .nav-menu-icon {
+    display: none;
   }
 
-  .nav-icon a, .nav-icon img {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
+  .nav-logo {
+    width: unset;
+    position: relative;
+    padding: 0 var(--nav-drawer-horizontal-padding);
+  }
+
+  .nav-content {
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+
+    width: unset;
+
+    transform: none;
+    transition: none;
+
+    background: none;
+  }
+
+  .nav-content li:after {
+    content: none;
+  }
+
+  .nav-content .nav-content__title {
+    display: none;
   }
 }
-*/

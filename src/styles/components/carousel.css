@@ -8,3 +8,10 @@
   background-position: center;
   background-size: cover;
 }
+
+@media (min-width: 1000px) {
+  .carousel {
+    height: 500px;
+    max-height: unset;
+  }
+}

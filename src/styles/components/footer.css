@@ -34,6 +34,13 @@ footer {
   margin: calc(var(--padding) /2) 0;
 }
 
-@media (min-width: 740px) {
+.footer__logo {
+  max-width: 280px;
+  margin: 0 auto;
+}
 
+@media (min-width: 1000px) {
+  .footer__facebook::after {
+    content: none;
+  }
 }
