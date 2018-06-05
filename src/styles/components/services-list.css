@@ -21,6 +21,8 @@
   width: 100px;
   height: 100px;
   display: block;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: var(--button-bg);
   border-radius: 100%;
   margin: 0 auto;
@@ -29,4 +31,45 @@
 
 .service-icon:before:hover {
   background-color: var(--button-bg-hover);
+}
+
+.service-icon.extensions:before {
+  background-image: url('/images/services/extensions.png');
+}
+
+.service-icon.renovations:before {
+  background-image: url('/images/services/house-renovations.png');
+
+}
+
+.service-icon.driveways:before {
+  background-image: url('/images/services/driveways.png');
+
+}
+
+.service-icon.fencing:before {
+  background-image: url('/images/services/fencing.png');
+}
+
+.service-icon.loft-conversions:before {
+  background-image: url('/images/services/loft-conversions.png');
+}
+
+.service-icon.patios:before {
+  background-image: url('/images/services/patios.png');
+}
+
+.service-icon.landscaping:before {
+  background-image: url('/images/services/landscaping.png');
+}
+
+.service-icon.bathrooms:before {
+  background-image: url('/images/services/bathrooms.png');
+}
+
+@media (min-width: 1000px) {
+  .services-list {
+    margin: calc(var(--padding) * 2) 0;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
