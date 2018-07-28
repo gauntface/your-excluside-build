@@ -32,7 +32,7 @@ const fbAPI = (...args) => {
   });
 };
 
-const getFBAccessToken = async () => {
+const getFBAppAccessToken = async () => {
   const response = await fbAPI('oauth/access_token', {
     client_id: secrets.FB_CLIENT_ID,
     client_secret: secrets.FB_CLIENT_SECRET,
@@ -40,6 +40,13 @@ const getFBAccessToken = async () => {
   });
   return response.access_token;
 }
+
+/*const getFBPageAccessToken = async () => {
+  console.log('HERE <--------------------');
+  const response = await fbAPI(`/${FB_PAGE_ID}?fields=access_token`);
+  console.log('Response :::::::::::: ', response);
+  // throw new Error('Inject error yo.')
+}*/
 
 const getAlbums = async () => {
   const response = await fbAPI(`/${FB_PAGE_ID}/albums?fields=cover_photo,name`);
@@ -123,8 +130,9 @@ const downloadAlbum = async (albumInfo, galleryPath) => {
 };
 
 const generateGalleryFiles = async (galleryPath) => {
-  const accessToken = await getFBAccessToken();
+  const accessToken = await getFBAppAccessToken();
   FB.setAccessToken(accessToken);
+  await getFBPageAccessToken();
 
   const allAlbums = (await getAlbums()).filter((albumInfo) => {
     switch (albumInfo.name.toLowerCase()) {

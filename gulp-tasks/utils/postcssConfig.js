@@ -1,12 +1,12 @@
 const postcss = require('gulp-postcss');
 const cssimport = require('postcss-import');
-const cssnext = require('postcss-cssnext');
+const cssPresetEnv = require('postcss-preset-env');
 const cssnano = require('cssnano');
 
 module.exports = () => {
   return postcss([
     cssimport(),
-    cssnext({
+    cssPresetEnv({
       features: {
         customProperties: {
           // Allows both fallback and CSS variables to be used
