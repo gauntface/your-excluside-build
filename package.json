@@ -18,7 +18,7 @@
     "gulp-imagemin": "4.1.0",
     "gulp-mustache": "3.0.1",
     "gulp-postcss": "7.0.1",
-    "gulp-sourcemaps": "2.6.3",
+    "gulp-sourcemaps": "2.6.5",
     "imagemin-pngquant": "5.0.1",
     "mustache": "2.3.0",
     "postcss-import": "11.0.0",
