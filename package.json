@@ -15,7 +15,7 @@
     "fs-extra": "5.0.0",
     "gulp": "4.0.0",
     "gulp-htmlmin": "4.0.0",
-    "gulp-imagemin": "4.1.0",
+    "gulp-imagemin": "8.0.0",
     "gulp-mustache": "3.0.1",
     "gulp-postcss": "7.0.1",
     "gulp-sourcemaps": "2.6.3",
